@@ -1,0 +1,28 @@
+<div class="container">
+  <p-card header="{{phone.model}}">
+    <p-rating
+      [formControl]="rating"
+      [cancel]="false"
+      [stars]="10"
+    ></p-rating>
+
+    <div>Price: {{phone.price}}</div>
+    <div>Core: {{phone.core}}</div>
+    <div>Memory: {{phone.memory}}</div>
+    <div>Screen size: {{phone.screenSize}}</div>
+
+    <ng-template pTemplate="footer">
+      <p-button
+        class="navigation"
+        label="View phones table"
+        (click)="goToTablePage()"
+      ></p-button>
+      <p-button
+        class="navigation"
+        label="View rating chart"
+        (click)="goToChartPage()"
+      ></p-button>
+    </ng-template>
+  </p-card>
+</div>
+

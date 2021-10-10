@@ -1,0 +1,11 @@
+<ng-container *ngIf="(phones$ | async) as phones; else loader">
+  <app-table-ui
+    [phones]="phones"
+    (deletePhoneByIndex)="deletePhoneByIndex($event)"
+    (savePhoneByIndex)="savePhoneByIndex($event)"
+  ></app-table-ui>
+</ng-container>
+
+<ng-template #loader>
+  Loading....
+</ng-template>

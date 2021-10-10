@@ -1,0 +1,95 @@
+<div class="card">
+  <button pButton label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+  <p-table
+    #dt
+    [value]="phones"
+    [rows]="10"
+    responsiveLayout="scroll"
+    [rowHover]="true"
+    dataKey="id"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Model </th>
+        <th>Price</th>
+        <th>Core</th>
+        <th>Memory</th>
+        <th>Screen</th>
+        <th>Rating</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-phone let-rowIndex="rowIndex" >
+      <tr>
+        <td>{{phone.model}}</td>
+        <td>{{phone.price}}</td>
+        <td>{{phone.core}}</td>
+        <td>{{phone.memory}}</td>
+        <td>{{phone.screenSize}}</td>
+        <td>{{phone.rating}}</td>
+        <td>
+          <button pButton  icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2 space" (click)="editPhoneDescription(rowIndex)"></button>
+          <button pButton  icon="pi pi-trash" class="p-button-rounded p-button-warning space" (click)="deletePhone(rowIndex)"></button>
+          <button pButton  icon="pi pi-chevron-circle-right" class="p-button-rounded p-mr-2 space" [routerLink] ="['/details', rowIndex]" (click)="editPhoneDescription(rowIndex)"> </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-button
+    label="View rating chart"
+    (click)="goToCharPage()"
+  ></p-button>
+</div>
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Phone Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="model">Model</label>
+      <input type="text" pInputText id="model"  [formControl]="model" autofocus />
+      <small class="p-error" *ngIf="submitted && model.invalid">Model is required.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="price">Price</label>
+      <input type="text" pInputText id="price"  [formControl]="price" />
+      <small class="p-error" *ngIf="submitted && price.invalid">Price is required.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="core">Core</label>
+      <input type="text" pInputText id="core"  [formControl]="core"  />
+      <small class="p-error" *ngIf="submitted && core.invalid">Core is required.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="memory">Memory</label>
+      <input type="text" pInputText id="memory"  [formControl]="memory" />
+      <small class="p-error" *ngIf="submitted  && memory.invalid">Memory is required.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="screen">Screen size</label>
+      <input type="text" pInputText id="screen"  [formControl]="screen" />
+      <small class="p-error" *ngIf="submitted && screen.invalid">Screen size is required.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="camera">Camera</label>
+      <input type="text" pInputText id="camera"  [formControl]="camera" />
+      <small class="p-error" *ngIf="submitted && camera.invalid">Camera is required.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="rating">Rating</label>
+      <input type="text" pInputText id="rating"  [formControl]="rating" />
+      <small class="p-error" *ngIf="submitted && rating.invalid">Rating is required.</small>
+    </div>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+  </ng-template>
+</p-dialog>

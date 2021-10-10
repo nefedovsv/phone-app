@@ -1,0 +1,10 @@
+<ng-container *ngIf="(phone$ | async) as phone; else loader">
+  <app-details-ui
+  [phone] = phone
+  (ratingChange)="ratingChange($event)"
+  ></app-details-ui>
+</ng-container>
+
+<ng-template #loader>
+  Loading....
+</ng-template>

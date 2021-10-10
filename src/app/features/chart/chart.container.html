@@ -1,0 +1,9 @@
+<ng-container *ngIf="(phones$ | async) as phones; else loader">
+    <app-chart-ui
+      [phones]="phones"
+    ></app-chart-ui>
+</ng-container>
+
+<ng-template #loader>
+  Loading....
+</ng-template>
